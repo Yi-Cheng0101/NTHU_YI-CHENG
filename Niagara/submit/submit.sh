@@ -1,35 +1,33 @@
 #!/bin/bash
-#PBS -P 50000007
-#PBS -N NTHU_NEMO_4NODE_24CPUs
-#PBS -q normal
-#PBS -l select=4:ncpus=24:mpiprocs=24:mem=96gb
-#PBS -l walltime=12:00:00
-#PBS -o NTHU_GPAW_4NODE_24CPUs_out.txt
-#PBS -e NTHU_GPAW_4NODE_24CPUs_err.txt
-#PBS -M n88199911652@gmail.com
-#PBS -m be
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=80
+#SBATCH --time=00300:00
+#SBATCH --job-name=mpi_job
+#SBATCH --output=gpaw_one_node_4.txt
+#SBATCH --mail-user=n88199911652@gmail.com
+#SBATCH --mail-type=BEGIN,END,FAIL
 
-echo "======================== export path ============================"
+
 export APPROOT=$APPROOT
-export OMP_NUM_THREADS=1
-export USE_SIMPLE_THREADED_LEVEL3= 1
-ulimit -u 127590
-echo "======================== module load ============================"
+export MODULEPATH=$APPROOT/modules:$MODULEPATH
+module load intel/2019u4
+module load intelmpi/2019u4
+module load openblas/0.3.7
+module load python/3.8.5
 
-cd /home/users/industry/isc2020/iscst07/scratch/yicheng-5.1.0/test_4_node
+cd  $APPROOT
 
-echo "========================== hostfile ============================="
-hostfile="hostfile.$PBS_JOBID"
-WCOLL="wcoll.$PBS_JOBID"
-export WCOLL
-sort $PBS_NODEFILE | uniq > $WCOLL
-((np=0))
-for h in `cat $WCOLL` ; do
-n=`grep -cx "$h" "$PBS_NODEFILE"`
-echo $h-ib0:$n
-((np=np+n))
-done > $APPROOT/$hostfile
+export PATH=$PATH:$HOME/.local/bin
+export GPAW_CONFIG=$APPROOT/gpaw-20.10.0/siteconfig.py
+export GPAW_SETUP_PATH=$APPROOT/gpaw-setups-0.9.20000
 
 
-echo "=========================== mpi run ============================="
-mpirun -np 96 -hostfile ./$hostfile gpaw python /home/users/industry/isc2020/iscst07/yicheng/gpaw-isc-2021/input-files/copper.py
+HOSTS=.hosts-job$SLURM_JOB_ID
+HOSTFILE=.hostlist-job$SLURM_JOB_ID
+srun hostname -f > $HOSTS
+sort $HOSTS | uniq -c | awk '{print $2 ":" $1}' >> $HOSTFILE
+
+
+
+echo "=============================mpi run============================"
+mpirun -np 320 -hostfile ./$HOSTFILE gpaw-python $APPROOT/gpaw-isc-2021/input-files/copper.py
