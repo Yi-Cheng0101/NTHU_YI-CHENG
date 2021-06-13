@@ -1,14 +1,16 @@
-compiler = '$APPROOT/opt/mpich-3.3/bin/mpicc'
-mpicompiler = '$APPROOT/opt/mpich-3.3/bin/mpicc'
-mpilinker = '$APPROOT/opt/mpich-3.3/bin/mpicc'
+compiler = 'icc'
+mpicompiler = 'mpicc'
+mpilinker = 'mpicc'
 
+# - static linking:
 xc = '$APPROOT/opt/libxc-4.3.4/'
 include_dirs += [xc + 'include']
 extra_link_args += [xc + 'lib/libxc.a']
 if 'xc' in libraries:
-                libraries.remove('xc')
+        libraries.remove('xc')
 
 
-
+fftw = False
 parallel_python_interpreter = False
-extra_link_args += ['$APPROOT/opt/BLAS-3.8.0/lib/libblas.a']
+
+extra_link_args += ['/scinet/niagara/software/2019b/opt/intel-2019u4/openblas/0.3.7/lib/libopenblas.a']
