@@ -11,4 +11,4 @@ if 'xc' in libraries:
 
 
 parallel_python_interpreter = False
-extra_link_args += ['$APPROOT/lib/BLAS-3.8.0/libblas.a']
+extra_link_args += ['$APPROOT/opt/BLAS-3.8.0/lib/libblas.a']
