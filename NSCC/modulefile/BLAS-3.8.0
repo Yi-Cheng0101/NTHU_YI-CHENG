@@ -1,9 +1,8 @@
 #%Module
 
-set s $APPROOT/opt/openblas
+set s $APPROOT/opt/BLAS-3.8.0
 
-prepend-path PATH $s/bin
+
 prepend-path LIBRARY_PATH $s/lib
 prepend-path LD_LIBRARY_PATH $s/lib
-prepend-path CPATH $s/include
-prepend-path INCLUDE $s/include
+
