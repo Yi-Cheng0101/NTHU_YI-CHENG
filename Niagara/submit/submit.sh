@@ -14,6 +14,7 @@ module load intel/2019u4
 module load intelmpi/2019u4
 module load openblas/0.3.7
 module load python/3.8.5
+module load libxc-4.3.4
 
 cd  $APPROOT
 
