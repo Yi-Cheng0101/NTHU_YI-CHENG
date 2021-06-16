@@ -1,1 +1,9 @@
+#%Module
 
+set s $APPROOT/opt/hdf5-1.8.21
+
+prepend-path PATH $s/bin
+prepend-path LIBRARY_PATH $s/lib
+prepend-path LD_LIBRARY_PATH $s/lib
+prepend-path CPATH $s/include
+prepend-path INCLUDE $s/include
