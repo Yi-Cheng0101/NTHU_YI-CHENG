@@ -2,7 +2,7 @@ compiler = 'icc'
 mpicompiler = 'mpicc'
 mpilinker = 'mpicc'
 
-xc = '/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/libxc-4.3.4/'
+xc = '$APPROOT/opt/libxc-4.3.4/'
 include_dirs += [xc + 'include']
 extra_link_args += [xc + 'lib/libxc.a']
 if 'xc' in libraries:
@@ -14,7 +14,7 @@ scalapack = True
 
 hdf5 = True
 if hdf5:
-    path = '/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/hdf5-1.8.21/'
+    path = '$APPROOT/opt/hdf5-1.8.21/'
     extra_link_args += ['-Wl,-rpath=%s/lib' % path]
     library_dirs += ['%s/lib' % path]
     include_dirs += ['%s/include' % path]
@@ -23,7 +23,7 @@ if hdf5:
 
 libvdwxc = True
 if libvdwxc:
-    path = '/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/scala/libvdwxc-0.4.0'
+    path = '$APPROOT/opt/libvdwxc-0.4.0'
     extra_link_args += ['-Wl,-rpath=%s/lib' % path]
     library_dirs += ['%s/lib' % path]
     include_dirs += ['%s/include' % path]
@@ -31,7 +31,7 @@ if libvdwxc:
 
 elpa = True
 if elpa:
-        elpadir = '/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/scala/elpa-2019.11.001'
+        elpadir = '$APPROOT/opt/elpa-2019.11.001'
         libraries += ['elpa']
         library_dirs += ['{}/lib'.format(elpadir)]
         extra_link_args += ['-Wl,-rpath={}/lib'.format(elpadir)]
@@ -41,15 +41,16 @@ if elpa:
 extra_link_args += ['-lfftw3_mpi']
 extra_link_args += ['-lfftw3']
 extra_link_args += ['-lifcore']
-extra_link_args += ['/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/scala/libvdwxc-0.4.0/lib/libvdwxc.a']
+extra_link_args += ['$APPROOT/opt/libvdwxc-0.4.0/lib/libvdwxc.a']
 
 
 fftw = True
-extra_link_args += ['/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/scala/elpa-2019.11.001/lib/libelpa.a']
+extra_link_args += ['$APPROOT/opt/elpa-2021.05.001/lib/libelpa.a']
 include_dirs += ['/scinet/intel/2019u4/compilers_and_libraries_2019.4.243/linux/mkl/include/fftw']
-extra_compile_args += ['/scratch/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/opt/scala/fftw3xf/libfftw3xf_intel.a']
+extra_compile_args += ['$APPROOT/build/fftw3xf/libfftw3xf_intel.a']
 extra_compile_args += ['-O3','-qopenmp']
 extra_link_args += ['-qopenmp']
+
 
 
 
