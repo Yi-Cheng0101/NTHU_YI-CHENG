@@ -1,6 +1,6 @@
 #%Module
 
-set s $APPROOT/opt/hdf5-1.8.21
+set s /scinet/niagara/software/2019b/opt/intel-2019u4-intelmpi-2019u4/fftw/3.3.8
 
 prepend-path PATH $s/bin
 prepend-path LIBRARY_PATH $s/lib
