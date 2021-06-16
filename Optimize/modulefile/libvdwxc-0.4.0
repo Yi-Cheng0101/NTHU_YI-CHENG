@@ -1,6 +1,6 @@
 #%Module
 
-set s $APPROOT/opt/libvdxvc-0.4.0
+set s $APPROOT/opt/libvdwxc-0.4.0
 
 prepend-path PATH $s/bin
 prepend-path LIBRARY_PATH $s/lib
