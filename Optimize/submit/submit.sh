@@ -33,4 +33,4 @@ sort $HOSTS | uniq -c | awk '{print $2 ":" $1}' >> $HOSTFILE
 
 
 echo "=============================mpi run============================"
-mpiexec -np 160 -bind-to none -hostfile ./$HOSTFILE  gpaw python /home/l/lcl_uotiscscc/lcl_uotiscsccs1040/yicheng/gpaw-isc-2021/input-files/copper.py
+mpiexec -np 160 -bind-to none -hostfile ./$HOSTFILE  gpaw python $APPROOT/gpaw-isc-2021/input-files/copper.py
