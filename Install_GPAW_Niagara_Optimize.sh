@@ -95,5 +95,3 @@ pip3 -v install gpaw --user
 cd $APPROOT
 git clone https://github.com/jussienko/gpaw-isc-2021.git
 cp ./NTHU_YI-CHENG/Optimize/submit/submit.sh $APPROOT
-rm $APPROOT/gpaw-isc-2021/input-files/copper.py
-cp ./NTHU_YI-CHENG/Optimize/submit/copper.py $APPROOT/gpaw-isc-2021/input-files/copper.py
