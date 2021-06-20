@@ -10,12 +10,13 @@
 #PBS -m be
 
 echo "======================== export path ============================"
-export APPROOT=/home/users/industry/isc2020/iscst07/scratch/yicheng-5.1.0/test_4_node
 export APPROOT=$APPROOT
 export GPAW_CONFIG=$APPROOT/gpaw-20.10.0/siteconfig.py
 export GPAW_SETUP_PATH=$APPROOT/gpaw-setups-0.9.20000
 export MODULEPATH=$APPROOT/modules:$MODULEPATH
 export PATH=$PATH:$HOME/.local/bin
+
+echo "======================== module load ============================"
 module purge
 module load gcc/5.1.0
 module load mpich-3.3
@@ -25,9 +26,8 @@ module load python/3.8.3
 export OMP_NUM_THREADS=1
 export USE_SIMPLE_THREADED_LEVEL3= 1
 ulimit -u 127590
-echo "======================== module load ============================"
 
-cd /home/users/industry/isc2020/iscst07/scratch/yicheng-5.1.0/test_4_node
+cd $APPROOT
 
 echo "========================== hostfile ============================="
 hostfile="hostfile.$PBS_JOBID"
@@ -43,4 +43,6 @@ done > $APPROOT/$hostfile
 
 
 echo "=========================== mpi run ============================="
-mpirun -np 96 -hostfile ./$hostfile gpaw python /home/users/industry/isc2020/iscst07/yicheng/gpaw-isc-2021/input-files/copper.py
+mpirun -np 96 -hostfile ./$hostfile gpaw python $APPROOT/gpaw-isc-2021/input-files/copper.py
+
+
