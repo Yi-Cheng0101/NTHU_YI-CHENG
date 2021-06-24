@@ -31,11 +31,11 @@ if libvdwxc:
 
 elpa = True
 if elpa:
-        elpadir = '$APPROOT/opt/elpa-2019.11.001'
+        elpadir = '$APPROOT/opt/elpa-2021.05.001'
         libraries += ['elpa']
         library_dirs += ['{}/lib'.format(elpadir)]
         extra_link_args += ['-Wl,-rpath={}/lib'.format(elpadir)]
-        include_dirs += ['{}/include/elpa-2019.11.001'.format(elpadir)]
+        include_dirs += ['{}/include/elpa-2021.05.001'.format(elpadir)]
 
 
 extra_link_args += ['-lfftw3_mpi']
