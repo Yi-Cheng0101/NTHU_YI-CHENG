@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=80
-#SBATCH --time=00300:00
+#SBATCH --time=00:30:00
 #SBATCH --job-name=mpi_job
 #SBATCH --output=gpaw_one_node_4.txt
 #SBATCH --mail-user=n88199911652@gmail.com
